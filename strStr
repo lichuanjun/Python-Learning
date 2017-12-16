@@ -1,0 +1,45 @@
+***字符串查找***
+
+
+class Solution:
+    """
+    @param: source: source string to be scanned.
+    @param: target: target string containing the sequence of characters to match
+    @return: a index to the first occurrence of target in source, or -1  if target is not part of source.
+    """
+    def strStr1(self, source, target):
+        if source is None or target is None:
+            return -1
+        lenA = len(source)
+        lenB = len(target)
+        for i in range(lenA - lenB + 1):
+            j = 0
+            while j < lenB:
+                if source[i+j] != target[j]:
+                    break
+                j += 1
+            if j == lenB:
+                return i
+        return -1
+       
+    """
+    @param: source: source string to be scanned.
+    @param: target: target string containing the sequence of characters to match
+    @return: a index to the first occurrence of target in source, or -1  if target is not part of source.
+    """
+    def strStr2(self, source, target):
+        if source is None or target is None:
+            return -1
+        lenA = len(source)
+        lenB = len(target)
+        i = j = 0
+        while (i < lenA and j < lenB):
+            if source[i] == target[j]:
+                i += 1
+                j += 1
+            else:
+                i = i - j + 1
+                j = 0
+        if j == lenB:
+            return i - j
+        return -1
